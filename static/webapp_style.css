@@ -1,0 +1,242 @@
+/* Spotify Hygiene Web App Styles */
+
+:root {
+    --spotify-green: #1DB954;
+    --spotify-dark: #191414;
+    --spotify-gray: #282828;
+    --spotify-light-gray: #b3b3b3;
+    --spotify-white: #ffffff;
+}
+
+body {
+    background: linear-gradient(135deg, var(--spotify-dark) 0%, var(--spotify-gray) 100%);
+    color: var(--spotify-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: rgba(25, 20, 20, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--spotify-green) !important;
+}
+
+.hero-section {
+    padding: 100px 0;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(29, 185, 84, 0.1) 0%, transparent 70%);
+}
+
+.hero-section h1 {
+    color: var(--spotify-white);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-section .lead {
+    color: var(--spotify-light-gray);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn-spotify {
+    background: var(--spotify-green);
+    border: none;
+    color: var(--spotify-white);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-spotify:hover {
+    background: #1ed760;
+    color: var(--spotify-white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(29, 185, 84, 0.3);
+}
+
+.feature-card {
+    background: rgba(40, 40, 40, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--spotify-green);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--spotify-green);
+    margin-bottom: 1rem;
+}
+
+.user-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--spotify-green);
+}
+
+.table-dark {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-dark th {
+    background: rgba(29, 185, 84, 0.2);
+    border: none;
+    color: var(--spotify-green);
+    font-weight: 600;
+}
+
+.table-dark td {
+    border-color: rgba(29, 185, 84, 0.1);
+}
+
+.dashboard-card {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--spotify-green);
+}
+
+.cleanup-controls {
+    background: rgba(40, 40, 40, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(29, 185, 84, 0.3);
+    margin-bottom: 2rem;
+}
+
+.progress-container {
+    background: rgba(25, 20, 20, 0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    display: none;
+}
+
+.progress {
+    background: rgba(40, 40, 40, 0.8);
+    height: 10px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--spotify-green), #1ed760);
+}
+
+.preview-track {
+    background: rgba(40, 40, 40, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--spotify-green);
+}
+
+.preview-track img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.footer {
+    background: rgba(25, 20, 20, 0.95);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.alert-success {
+    background: rgba(29, 185, 84, 0.2);
+    border: 1px solid var(--spotify-green);
+    color: var(--spotify-white);
+}
+
+.alert-danger {
+    background: rgba(255, 69, 58, 0.2);
+    border: 1px solid #ff453a;
+    color: var(--spotify-white);
+}
+
+.alert-info {
+    background: rgba(0, 122, 255, 0.2);
+    border: 1px solid #007aff;
+    color: var(--spotify-white);
+}
+
+.form-control {
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(29, 185, 84, 0.3);
+    color: var(--spotify-white);
+}
+
+.form-control:focus {
+    background: rgba(40, 40, 40, 0.9);
+    border-color: var(--spotify-green);
+    color: var(--spotify-white);
+    box-shadow: 0 0 0 0.2rem rgba(29, 185, 84, 0.25);
+}
+
+.form-select {
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(29, 185, 84, 0.3);
+    color: var(--spotify-white);
+}
+
+.form-check-input:checked {
+    background-color: var(--spotify-green);
+    border-color: var(--spotify-green);
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .user-welcome {
+        flex-direction: column;
+    }
+    
+    .feature-card {
+        margin-bottom: 1rem;
+    }
+}

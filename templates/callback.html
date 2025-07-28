@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Authentication - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-header {% if success %}bg-success{% else %}bg-danger{% endif %} text-white text-center">
+                        <h2 class="mb-0">
+                            <i class="fab fa-spotify me-2"></i>
+                            Authentication Result
+                        </h2>
+                    </div>
+                    <div class="card-body text-center p-5">
+                        {% if success %}
+                            <div class="mb-4">
+                                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="text-success mb-4">Authentication Successful!</h3>
+                            <p class="lead mb-4">
+                                You have successfully connected to Spotify. You can now close this browser window.
+                            </p>
+                            <div class="alert alert-success">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Next Steps:</strong> Return to your terminal/command line to continue 
+                                with the cleaning process.
+                            </div>
+                            <div class="auto-close-notice mt-4">
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>
+                                    This window will automatically close in <span id="countdown">5</span> seconds.
+                                </small>
+                            </div>
+                        {% else %}
+                            <div class="mb-4">
+                                <i class="fas fa-times-circle text-danger" style="font-size: 4rem;"></i>
+                            </div>
+                            <h3 class="text-danger mb-4">Authentication Failed</h3>
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <strong>Error:</strong> {{ error }}
+                            </div>
+                            <p class="mb-4">
+                                Please close this window and try again from your terminal/command line.
+                            </p>
+                            <div class="troubleshooting">
+                                <h5>Troubleshooting Tips:</h5>
+                                <ul class="text-start">
+                                    <li>Make sure your Spotify Client ID and Secret are correct</li>
+                                    <li>Check that the redirect URI matches in your Spotify app settings</li>
+                                    <li>Ensure you have a valid Spotify account</li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        <button type="button" class="btn btn-secondary mt-3" onclick="window.close();">
+                            <i class="fas fa-times me-2"></i>
+                            Close Window
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if success %}
+    <script>
+        // Auto-close countdown
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        // Update countdown display
+        if (countdownElement) {
+            countdownElement.textContent = countdown;
+        }
+        
+        const timer = setInterval(() => {
+            countdown--;
+            if (countdownElement) {
+                countdownElement.textContent = countdown;
+            }
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.close();
+            }
+        }, 1000);
+        
+        // Also try to close immediately if this is a popup
+        if (window.opener) {
+            setTimeout(() => {
+                window.close();
+            }, 2000);
+        }
+    </script>
+    {% endif %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

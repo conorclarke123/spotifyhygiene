@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Liked Songs Cleaner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-success text-white text-center">
+                        <h1 class="mb-0">
+                            <i class="fab fa-spotify me-2"></i>
+                            Spotify Liked Songs Cleaner
+                        </h1>
+                    </div>
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <i class="fas fa-music spotify-icon"></i>
+                        </div>
+                        
+                        <h3 class="mb-4">Clean Up Your Liked Songs</h3>
+                        
+                        <p class="lead mb-4">
+                            This tool will analyze your Spotify liked songs and remove tracks you haven't 
+                            listened to in the last 6 months.
+                        </p>
+                        
+                        <div class="features mb-4">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <i class="fas fa-search text-primary mb-2"></i>
+                                    <p><strong>Analyze</strong><br>Your listening history</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <i class="fas fa-clock text-warning mb-2"></i>
+                                    <p><strong>Identify</strong><br>Songs not played in 6 months</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <i class="fas fa-trash text-danger mb-2"></i>
+                                    <p><strong>Remove</strong><br>Old liked songs safely</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Safe & Secure:</strong> This tool only removes songs from your liked songs. 
+                            Your playlists and other data remain untouched.
+                        </div>
+                        
+                        <button id="spotifyLogin" class="btn btn-success btn-lg px-5">
+                            <i class="fab fa-spotify me-2"></i>
+                            Connect to Spotify
+                        </button>
+                        
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                You'll be redirected to Spotify to authorize this application in a new tab.
+                                <br>
+                                We only request the minimum permissions needed for this functionality.
+                            </small>
+                        </div>
+                        
+                        <div id="authStatus" class="mt-3" style="display: none;">
+                            <div class="alert alert-info">
+                                <i class="fas fa-external-link-alt me-2"></i>
+                                <strong>Authentication opened in new tab.</strong> 
+                                Complete the login there, then return here. The page will automatically update when done.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Your data is processed locally and never stored on our servers.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById('spotifyLogin').addEventListener('click', function() {
+            // Open login in new tab
+            const authWindow = window.open('/login', 'spotify-auth', 'width=600,height=700,scrollbars=yes,resizable=yes');
+            
+            // Show status message
+            document.getElementById('authStatus').style.display = 'block';
+            
+            // Poll for authentication completion
+            const pollTimer = setInterval(function() {
+                try {
+                    // Check if the auth window is closed (user completed or cancelled)
+                    if (authWindow.closed) {
+                        clearInterval(pollTimer);
+                        // Check authentication status
+                        fetch('/auth-status')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.authenticated) {
+                                    // Redirect to main app or show success
+                                    location.reload();
+                                } else {
+                                    // Hide status message if auth failed/cancelled
+                                    document.getElementById('authStatus').style.display = 'none';
+                                }
+                            })
+                            .catch(() => {
+                                document.getElementById('authStatus').style.display = 'none';
+                            });
+                    }
+                } catch (e) {
+                    // Cross-origin error is expected, continue polling
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

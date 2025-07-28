@@ -1,0 +1,198 @@
+/* Spotify Liked Songs Cleaner - Custom Styles */
+
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --spotify-white: #FFFFFF;
+    --spotify-gray: #535353;
+    --spotify-light-gray: #B3B3B3;
+}
+
+body {
+    background: linear-gradient(135deg, #191414 0%, #1DB954 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-header {
+    border: none;
+    background: var(--spotify-green) !important;
+    padding: 2rem;
+}
+
+.card-header h1,
+.card-header h2 {
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.spotify-icon {
+    font-size: 5rem;
+    color: var(--spotify-green);
+    margin-bottom: 1rem;
+}
+
+.features i {
+    font-size: 2rem;
+    display: block;
+}
+
+.btn-success {
+    background-color: var(--spotify-green);
+    border-color: var(--spotify-green);
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+}
+
+.btn-success:hover {
+    background-color: #1ed760;
+    border-color: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.4);
+}
+
+.btn-secondary {
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+.alert-info {
+    background-color: rgba(13, 202, 240, 0.1);
+    border-left: 4px solid #0dcaf0;
+}
+
+.alert-success {
+    background-color: rgba(29, 185, 84, 0.1);
+    border-left: 4px solid var(--spotify-green);
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid #dc3545;
+}
+
+.features .row > div {
+    padding: 1rem;
+}
+
+.features p {
+    margin-bottom: 0;
+    color: var(--spotify-gray);
+}
+
+.features strong {
+    color: var(--spotify-black);
+}
+
+.auto-close-notice {
+    background-color: rgba(0,0,0,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.troubleshooting {
+    text-align: left;
+    background-color: rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.troubleshooting h5 {
+    color: var(--spotify-black);
+    margin-bottom: 1rem;
+}
+
+.troubleshooting ul {
+    color: var(--spotify-gray);
+    margin-bottom: 0;
+}
+
+.troubleshooting li {
+    margin-bottom: 0.5rem;
+}
+
+/* Animation for success/error icons */
+.fa-check-circle,
+.fa-times-circle {
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 2rem 1.5rem !important;
+    }
+    
+    .spotify-icon {
+        font-size: 3rem;
+    }
+    
+    .features .row > div {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Loading animation for buttons */
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--spotify-green);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1ed760;
+}
